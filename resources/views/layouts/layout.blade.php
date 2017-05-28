@@ -20,6 +20,9 @@
 
     @include('layouts.navbar')
 
+
+    @include('layouts.flash')
+
     <div class="blog-header">
       <div class="container">
         <h1 class="blog-title">My Blog</h1>

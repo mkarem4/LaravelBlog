@@ -124,6 +124,16 @@ h6, .h6 {
 }
 
 
+
+/* flash message */
+
+#flash-message {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  z-index: 10;
+}
+
 /* Pagination */
 .blog-pagination {
   margin-bottom: 4rem;
