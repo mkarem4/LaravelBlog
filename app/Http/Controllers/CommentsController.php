@@ -2,12 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Post;
 use Illuminate\Http\Request;
-use App\Post;
-use App\Comment;
 
 class CommentsController extends Controller
 {
+
+  public function __construct()
+  {
+    $this->middleware('auth');
+  }
     public function store(Post $post)
     {
       $this->validate(request(),['body'=>'required|min:2']);

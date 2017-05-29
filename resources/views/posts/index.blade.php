@@ -5,7 +5,9 @@
 
 
       <div class="col-sm-8 blog-main">
-
+        @if (! Auth::guest())
+          <a href="{{ url('/posts/create') }}">Create Your Post</a>
+        @endif
         @foreach ($posts as $post)
           @include('posts.post')
         @endforeach

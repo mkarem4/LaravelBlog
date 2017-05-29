@@ -6,6 +6,23 @@
     <h1>{{ $post->title }}</h1>
 
 
+
+     {{-- tags --}}
+    @if (count($post->tags))
+      <ul>
+        @foreach ($post->tags as $tag)
+          <li>
+            <a href="/posts/tags/{{ $tag->name }}">
+              {{ $tag->name }}
+            </a>
+          </li>
+        @endforeach
+      </ul>
+    @endif
+
+
+
+
     {{ $post->body }}
 
     <hr>
@@ -25,8 +42,9 @@
     </div>
 
 <hr>
-    {{-- add comments --}}
 
+
+    {{-- add comments --}}
 
     <div class="card">
       <div class="card-block">

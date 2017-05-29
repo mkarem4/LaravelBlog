@@ -5,20 +5,34 @@
 /* post routes */
 Route::get('/','PostsController@index')->name('home');
 Route::get('/home','PostsController@index')->name('home');
-Route::get('/posts/create','PostsController@create');
-Route::post('/posts','PostsController@store');
+
+Route::group(['middleware' => ['web', 'auth']], function (){
+
+    Route::get('/posts/create','PostsController@create');
+    Route::post('/posts','PostsController@store');
+    Route::post('/posts/{post}/comments','CommentsController@store');
+    Route::get('/logout','SessionsController@destroy');
+
+
+
+});
 Route::get('/posts/{post}','PostsController@show');
 
 
 /* comments route */
-Route::post('/posts/{post}/comments','CommentsController@store');
+
+/* tags */
+Route::get('/posts/tags/{tag}','TagsController@index');
 
 
 /* login, registeration and logout */
-Route::get('/register','RegisterationController@create');
-Route::post('/register','RegisterationController@store');
 
-Route::get('/login','SessionsController@create');
-Route::post('/login','SessionsController@store');
+Route::group(['middleware' => ['web', 'guest']], function () {
 
-Route::get('/logout','SessionsController@destroy');
+    Route::get('/register', 'RegisterationController@create');
+    Route::post('/register', 'RegisterationController@store');
+
+    Route::get('/login', 'SessionsController@create')->name('login');
+    Route::post('/login', 'SessionsController@store');
+
+});
