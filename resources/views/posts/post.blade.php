@@ -8,6 +8,7 @@
     </a>
   </h2>
   <p class="blog-post-meta">
+
     by {{ $post->user->name }} on
     {{ $post->created_at->toFormattedDateString() }}
     </p>

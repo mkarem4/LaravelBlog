@@ -2,7 +2,7 @@
 
 namespace App\Http\Requests;
 
-use App\User;
+use App\Models\User;
 use App\Mail\welcome;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Mail;
