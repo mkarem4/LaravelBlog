@@ -6,6 +6,7 @@
         <a class="nav-link" href="#">Press</a>
         <a class="nav-link" href="#">New hires</a>
         <a class="nav-link" href="#">About</a>
+        <a class="nav-link" href="/notification" id="markasread">Notification</a>
         <a class="nav-link" href="#">
           <!-- Authentication Links -->
           @if (Auth::guest())

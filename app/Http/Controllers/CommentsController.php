@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use App\Notifications\Comments;
 use Illuminate\Http\Request;
 
 class CommentsController extends Controller
@@ -16,6 +17,7 @@ class CommentsController extends Controller
     {
       $this->validate(request(),['body'=>'required|min:2']);
       $post->addComment(request('body'));
+      $post->user->notify(new Comments($post));
       return back();
     }
 }
