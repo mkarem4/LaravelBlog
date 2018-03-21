@@ -15,9 +15,6 @@ Route::group(['middleware' => ['web', 'auth']], function (){
     Route::get('/notification',function(){
         return view('notifications.notification');
     });
-    Route::get('/markAsRead', function () {
-        auth()->user()->unreadNotifications->markAsRead();
-    });
 
 
 });

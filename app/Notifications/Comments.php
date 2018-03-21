@@ -2,18 +2,16 @@
 
 namespace App\Notifications;
 
-use App\Models\Comment;
 use App\Models\Post;
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
-
+use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Notifications\Messages\MailMessage;
 
 class Comments extends Notification
 {
     use Queueable;
-
-    protected $comment,$post;
-
+    protected $post,$user,$comment;
     /**
      * Create a new notification instance.
      *
@@ -21,8 +19,9 @@ class Comments extends Notification
      */
     public function __construct(Post $post)
     {
-        $this->comment = $post->comments;
         $this->post = $post;
+        $this->comment = $post->comments;
+        $this->user = $post->user;
     }
 
     /**
@@ -42,12 +41,12 @@ class Comments extends Notification
      * @param  mixed  $notifiable
      * @return \Illuminate\Notifications\Messages\MailMessage
      */
-    public function toDatabase()
+    public function toDatabse()
     {
-        return[
-            'comment' => $this->comment,
+        return [
             'post' => $this->post,
-            'user' => auth()->user()
+            'comment' => $this->comment,
+            'user' => $this->user
         ];
     }
 
